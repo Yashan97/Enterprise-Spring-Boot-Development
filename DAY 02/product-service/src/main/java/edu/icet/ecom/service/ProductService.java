@@ -8,7 +8,7 @@ public class ProductService {
 
     public ArrayList<Product> getProductList(){
         Product appleProduct = new Product();
-        appleProduct.setName("apple");
+        appleProduct.setName("appleeee");
         appleProduct.setDescription("good");
         appleProduct.setPrice(75.00);
 
