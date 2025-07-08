@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CustomerDto {
     private Integer isbn;
-    private  String tittle;
+    private  String title;
     private String author;
 
 }

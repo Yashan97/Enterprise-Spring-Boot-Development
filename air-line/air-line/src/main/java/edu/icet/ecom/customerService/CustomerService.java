@@ -19,11 +19,21 @@ public class CustomerService {
             for (CustomerEntity customer: all){
                 CustomerDto customerDto = new CustomerDto();
                 customerDto.setIsbn(customer.getIsbn());
-                customerDto.setTittle(customer.getAuthor());
+                customerDto.setTitle(customer.getAuthor());
                 customerDto.setAuthor(customer.getAuthor());
 
                 customerDtos.add(customerDto);
             }
             return customerDtos;
         }
+
+      public  void addCustomer(CustomerDto customerDto){
+//            ---------mapping----------
+          CustomerEntity customerEntity = new CustomerEntity();
+          customerEntity.setIsbn(customerDto.getIsbn());
+          customerEntity.setTitle(customerDto.getTitle());
+          customerEntity.setAuthor(customerDto.getAuthor());
+//          ------------mapping ------------
+          customerRepo.save(customerEntity);
+      }
 }
