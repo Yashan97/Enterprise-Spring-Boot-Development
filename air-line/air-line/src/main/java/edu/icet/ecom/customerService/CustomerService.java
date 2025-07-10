@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class CustomerService {
     @Autowired
@@ -35,5 +37,32 @@ public class CustomerService {
           customerEntity.setAuthor(customerDto.getAuthor());
 //          ------------mapping ------------
           customerRepo.save(customerEntity);
+      }
+
+      public void  deleteCustomer(Integer isbn){
+          customerRepo.deleteById(isbn);
+      }
+
+      public void update(CustomerDto customerDto){
+            CustomerEntity customerEntity = new CustomerEntity();
+            customerEntity.setIsbn(customerDto.getIsbn());
+            customerEntity.setTitle(customerDto.getTitle());
+            customerEntity.setAuthor(customerDto.getAuthor());
+
+            customerRepo.save(customerEntity);
+
+      }
+      public CustomerDto searchById(Integer isbn){
+          Optional<CustomerEntity> byId = customerRepo.findById(isbn);
+          if (byId.isPresent()){
+              CustomerDto customerDto = new CustomerDto();
+              customerDto.setIsbn(byId.get().getIsbn());
+              customerDto.setTitle(byId.get().getTitle());
+              customerDto.setAuthor(byId.get().getAuthor());
+
+              return  customerDto;
+          }else {
+              return null;
+          }
       }
 }
